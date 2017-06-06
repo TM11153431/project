@@ -41,6 +41,10 @@ Unfortunately or fortunately, this problem has never been tackled in this way. A
 # MVP
  
 All parts of this project constitute an important part of the end product. The map visualization and the table constitute the two most important parts. The scattergraph and storytelling are secondary elements, but complement the two major parts of the product. 
+
+# Design draft 
+
+![](doc/design_draft.jpeg)
  
  
  
