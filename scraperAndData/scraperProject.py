@@ -95,16 +95,7 @@ def rooming(paginas, stad):
             links.append(link)
             websites.append('Rooming')
 
-            try:
-                prijs = int(bsObj2.find('', {'class':'table table-striped'}).findAll('td')[9].text.replace('€ ', ''))
-                if prijs == 1:
-                    prijzen.append('1000')
-                elif prijs == 2:
-                    prijzen.append('2000')
-                else:
-                    prijzen.append(prijs)
-            except:
-                prijzen.append('00')
+            prijzen.append(bsObj2.find('', {'class':'table table-striped'}).findAll('td')[9].text.replace('€ ', ''))
             try:
                 oppervlaktes.append(bsObj2.find('', {'class':'table table-striped'}).findAll('td')[7].text.replace(' m²', ''))
             except:
@@ -113,10 +104,10 @@ def rooming(paginas, stad):
                 straten.append(bsObj2.find('', {'class':'table table-striped'}).findAll('td')[3].text)
             except:
                 straten.append('x')
-            try:
-                steden.append('Amsterdam')
-            except:
-                steden.append('x')
+            if "haag" in stad:
+                steden.append('Den Haag')
+            else:
+                steden.append(stad)
 
 def kamers(paginas):
 
@@ -196,13 +187,21 @@ def kamersInNederland(paginas, stad):
             except:
                 prijzen.append('00')
             try:
-                straten.append(bsObj2.findAll('h1')[1].text)
-            except:
-                straten.append('x')
-            try:
                 oppervlaktes.append(bsObj2.find('', {'class':'table'}).findAll('td')[8].text.replace('Contact landlord', '00').replace('m2', ''))
             except:
                 oppervlaktes.append('00')
+            try:
+                straat = bsObj2.findAll('h1')[1].text
+                if len(straat) < 30 and is not straat.isupper():
+                    straten.append(bsObj2.findAll('h1')[1].text)
+                else:
+                    oppervlaktes.pop()
+                    prijzen.pop()
+                    links.pop()
+                    websites.pop()
+                    continue
+            except:
+                straten.append('x')
 
 def kamerNet(paginas, stad):
 
@@ -220,8 +219,11 @@ def kamerNet(paginas, stad):
             #prepare link_item
             for link in bsObj.findAll("", {"class":"room-tile rowSearchResultRoom"}):
                 links.append(link.get('href'))
-                steden.append('Amsterdam')
                 websites.append('kamerNet')
+                if "haag" in stad:
+                    steden.append('Den Haag')
+                else:
+                    steden.append(stad)
 
             #prepare price_item
             for prijs in bsObj.findAll("", {"class":"rent truncate"}):
@@ -238,34 +240,49 @@ def kamerNet(paginas, stad):
             for oppervlakte in bsObj.findAll("", {"class":"title truncate"}):
                 oppervlakte = oppervlakte.text
                 if len(oppervlakte) < 8:
-                    oppervlaktes.append(oppervlakte[:3])
+                    oppervlakte = oppervlakte[:2]
+                    try:
+                        oppervlakte = int(oppervlakte)
+                        oppervlaktes.append(oppervlakte)
+                    except:
+                        straten.pop()
+                        prijzen.pop()
+                        links.pop()
+                        websites.pop()
+                        continue
 
+def goThroughAllCitiesAndWebsites():
+    kamerNet(22, 'amsterdam')
+    kamerNet(26, 'rotterdam')
+    kamerNet(18, 'utrecht')
+    kamerNet(30, 'groningen')
+    kamerNet(3, "den%20haag")
+    #give signal that the job is done
+    print("Kamernet: done")
 
+    # very little results, so maybe best not to use (can complicate the data)
+    #kamerVerhuur(4, 'amsterdam')
+    #print('Kamerverhuur: done.')
 
-kamerNet(2, 'amsterdam')
-#give signal that the job is done
-print("Kamernet: done")
+    rooming(20, 'amsterdam')
+    rooming(6, 'groningen')
+    rooming(20, "den%20haag")
+    rooming(12, 'rotterdam')
+    rooming(8, 'amsterdam')
 
-kamerVerhuur(4, 'amsterdam')
-print('Kamerverhuur: done.')
+    print('Rooming: done.')
 
-rooming(2, 'amsterdam')
-print('Rooming: done.')
+    #kamers(4)
+    print('Kamers: done.')
 
-#kamers(4)
-print('Kamers: done.')
+    kamersInNederland(25, 'amsterdam')
+    kamersInNederland(2, 'utrecht')
+    kamersInNederland(2, 'rotterdam')
+    kamersInNederland(1, 'groningen')
+    #print('kamersInNederland: done.')
 
-kamersInNederland(2, 'amsterdam')
-#print('kamersInNederland: done.')
-
-
-
-i = 0
-with open('names.csv', 'w') as csvfile:
-    fieldnames = ['stad', 'straat', 'prijs', 'oppervlakte', 'website', 'link']
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-    writer.writeheader()
+def printList():
+    i = 0
     for link in links:
         stad = steden[i]
         straat = straten[i]
@@ -279,9 +296,36 @@ with open('names.csv', 'w') as csvfile:
         #afbeelding3 = afbeeldingen3[i]
         website = websites[i]
         link = links[i]
-
-        writer.writerow({'stad' : stad, 'straat':straat, 'prijs':prijs, 'oppervlakte': oppervlakte, 'website': website, 'link': link})
-
         print(stad, straat, prijs, oppervlakte, website, link)
-
         i += 1
+
+def makeFile():
+    i = 0
+    with open('rooming_data_0806.csv', 'w') as csvfile:
+        fieldnames = ['stad', 'straat', 'prijs', 'oppervlakte', 'website', 'link']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for link in links:
+            stad = steden[i]
+            straat = straten[i]
+            prijs = prijzen[i]
+            oppervlakte = oppervlaktes[i]
+            #plaatsdatum = plaatsdata[i]
+            #begindatum = begindata[i]
+            #omschrijving = omschrijvingen[i]
+            #afbeelding = afbeeldingen[i]
+            #afbeelding2 = afbeeldingen2[i]
+            #afbeelding3 = afbeeldingen3[i]
+            website = websites[i]
+            link = links[i]
+
+            writer.writerow({'stad' : stad, 'straat':straat, 'prijs':prijs, 'oppervlakte': oppervlakte, 'website': website, 'link': link})
+
+            print(stad, straat, prijs, oppervlakte, website, link)
+
+            i += 1
+
+goThroughAllCitiesAndWebsites()
+printList()
+makeFile()

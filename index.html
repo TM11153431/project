@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<header>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="imagery.css">
+<h1> A headstarter </h1>
+</header>
+<body>
+  <div id="canvas-wrap">
+  <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Map')">Map</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">List</button>
+</div><div id="Map" class="tabcontent" width="320">
+      <h3>Map</h3>
+      </div>
+      <canvas id ="canvas2" height="400" width="320">
+      </canvas>
+    <div id="List" class="tabcontent">
+        <h3>list</h3>
+        <canvas id ="canvas2" height="400" width="320">
+        </canvas>
+    </div>
+</div>
+<canvas id="table" width="692" height="500">
+</canvas>
+</body>
+<script>
+
+function openCity(evt, visualization) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(visualization).style.display = "inline";
+    evt.currentTarget.className += " active";
+}
+
+function createMap() {
+
+    var width = 320,
+        height = 500;
+
+    var colour = d3.scale.category20();
+
+    var projection = d3.geo.mercator()
+        .scale(1)
+        .translate([0, 0]);
+
+    var path = d3.geo.path()
+        .projection(projection);
+
+    var svg = d3.select("#Map").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    d3.json("nld.json", function(error, nld) {
+
+        var l = topojson.feature(nld, nld.objects.subunits).features[3],
+            b = path.bounds(l),
+            s = .2 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+        projection
+            .scale(s)
+            .translate(t);
+
+        svg.selectAll("path")
+            .data(topojson.feature(nld, nld.objects.subunits).features).enter()
+            .append("path")
+            .attr("d", path)
+            .attr("fill", function(d, i) {
+                return colour(i);
+            })
+            .attr("class", function(d, i) {
+                return d.properties.name;
+            });
+    });
+  }
+
+createMap()
+</script>
+</html>
