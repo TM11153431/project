@@ -1,15 +1,5 @@
-[INFO  - 2017-06-08T13:37:30.179Z] GhostDriver - Main - running on port 57337
-[INFO  - 2017-06-08T13:37:30.312Z] Session [9e7a1de0-4c4f-11e7-939f-65f08925f008] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2017-06-08T13:37:30.313Z] Session [9e7a1de0-4c4f-11e7-939f-65f08925f008] - page.customHeaders:  - {}
-[INFO  - 2017-06-08T13:37:30.313Z] Session [9e7a1de0-4c4f-11e7-939f-65f08925f008] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-10.11 (El Capitan)-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2017-06-08T13:37:30.313Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 9e7a1de0-4c4f-11e7-939f-65f08925f008
-[ERROR - 2017-06-08T13:38:59.797Z] Session [9e7a1de0-4c4f-11e7-939f-65f08925f008] - page.onError - msg: undefined
-
-  phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-06-08T13:38:59.797Z] Session [9e7a1de0-4c4f-11e7-939f-65f08925f008] - page.onError - stack:
-  (anonymous function) (http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5086a2631570a963:2)
-
-  phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-06-08T13:40:50.369Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1496929250288
-
-  phantomjs://platform/console++.js:263 in error
+[INFO  - 2017-06-09T10:01:13.720Z] GhostDriver - Main - running on port 55008
+[INFO  - 2017-06-09T10:01:14.706Z] Session [92d38480-4cfa-11e7-87a3-67c2d0627d1b] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-06-09T10:01:14.706Z] Session [92d38480-4cfa-11e7-87a3-67c2d0627d1b] - page.customHeaders:  - {}
+[INFO  - 2017-06-09T10:01:14.706Z] Session [92d38480-4cfa-11e7-87a3-67c2d0627d1b] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-10.11 (El Capitan)-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-06-09T10:01:14.706Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 92d38480-4cfa-11e7-87a3-67c2d0627d1b

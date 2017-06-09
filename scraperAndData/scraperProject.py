@@ -192,7 +192,7 @@ def kamersInNederland(paginas, stad):
                 oppervlaktes.append('00')
             try:
                 straat = bsObj2.findAll('h1')[1].text
-                if len(straat) < 30 and is not straat.isupper():
+                if len(straat) < 30:
                     straten.append(bsObj2.findAll('h1')[1].text)
                 else:
                     oppervlaktes.pop()
@@ -252,10 +252,10 @@ def kamerNet(paginas, stad):
                         continue
 
 def goThroughAllCitiesAndWebsites():
-    kamerNet(22, 'amsterdam')
-    kamerNet(26, 'rotterdam')
-    kamerNet(18, 'utrecht')
-    kamerNet(30, 'groningen')
+    kamerNet(20, 'amsterdam')
+    kamerNet(22, 'rotterdam')
+    kamerNet(16, 'utrecht')
+    kamerNet(26, 'groningen')
     kamerNet(3, "den%20haag")
     #give signal that the job is done
     print("Kamernet: done")
@@ -264,18 +264,18 @@ def goThroughAllCitiesAndWebsites():
     #kamerVerhuur(4, 'amsterdam')
     #print('Kamerverhuur: done.')
 
-    rooming(20, 'amsterdam')
-    rooming(6, 'groningen')
-    rooming(20, "den%20haag")
-    rooming(12, 'rotterdam')
-    rooming(8, 'amsterdam')
+    rooming(16, 'amsterdam')
+    rooming(5, 'groningen')
+    rooming(18, "den%20haag")
+    rooming(10, 'rotterdam')
+    rooming(6, 'amsterdam')
 
     print('Rooming: done.')
 
     #kamers(4)
     print('Kamers: done.')
 
-    kamersInNederland(25, 'amsterdam')
+    kamersInNederland(23, 'amsterdam')
     kamersInNederland(2, 'utrecht')
     kamersInNederland(2, 'rotterdam')
     kamersInNederland(1, 'groningen')
