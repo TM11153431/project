@@ -13,7 +13,7 @@
 	Now, I have to clean the data and make the scrapers run for all required cities and pages. When that will be done, I will create the first element: the map. \
 \
 \
-#June 8th\
+# June 8th\
 \
 	My goal today is to clean the data and start creating the first element: the map. Furthermore, I have to upload a design document (see projects.mprog.nl). Maybe before creating the map, it would be suitable to create canvases in css to frame the different elements of my project. \
 	I chose to only retain three websites from the initial five that I built scrapers for. The reason for this was the loss of data (the two discarded websites were the smallest) is negligible when compared with the difficulty that these two websites present in the presentation of their data. If I choose to keep these two, I will have to spend a lot of time to uniformize the collected data. Now the next step is to build the frame in which the different elements of the websites will be put in. \
