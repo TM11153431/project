@@ -108,6 +108,7 @@ def rooming(paginas, stad):
                 steden.append('Den Haag')
             else:
                 steden.append(stad)
+        print("page done")
 
 def kamers(paginas):
 
@@ -252,10 +253,10 @@ def kamerNet(paginas, stad):
                         continue
 
 def goThroughAllCitiesAndWebsites():
-    kamerNet(20, 'amsterdam')
-    kamerNet(22, 'rotterdam')
-    kamerNet(16, 'utrecht')
-    kamerNet(26, 'groningen')
+    kamerNet(20, 'Amsterdam')
+    kamerNet(22, 'Rotterdam')
+    kamerNet(16, 'Utrecht')
+    kamerNet(26, 'Groningen')
     kamerNet(3, "den%20haag")
     #give signal that the job is done
     print("Kamernet: done")
@@ -264,21 +265,21 @@ def goThroughAllCitiesAndWebsites():
     #kamerVerhuur(4, 'amsterdam')
     #print('Kamerverhuur: done.')
 
-    rooming(16, 'amsterdam')
-    rooming(5, 'groningen')
-    rooming(18, "den%20haag")
-    rooming(10, 'rotterdam')
-    rooming(6, 'amsterdam')
+    rooming(4, 'Amsterdam')
+    rooming(4, 'Groningen')
+    rooming(4, "den%20haag")
+    rooming(4, 'Rotterdam')
+    rooming(3, 'Utrecht')
 
     print('Rooming: done.')
 
     #kamers(4)
     print('Kamers: done.')
 
-    kamersInNederland(23, 'amsterdam')
-    kamersInNederland(2, 'utrecht')
-    kamersInNederland(2, 'rotterdam')
-    kamersInNederland(1, 'groningen')
+    kamersInNederland(23, 'Amsterdam')
+    kamersInNederland(2, 'Utrecht')
+    kamersInNederland(2, 'Rotterdam')
+    kamersInNederland(1, 'Groningen')
     #print('kamersInNederland: done.')
 
 def printList():
@@ -319,13 +320,16 @@ def makeFile():
             #afbeelding3 = afbeeldingen3[i]
             website = websites[i]
             link = links[i]
-
-            writer.writerow({'stad' : stad, 'straat':straat, 'prijs':prijs, 'oppervlakte': oppervlakte, 'website': website, 'link': link})
-
-            print(stad, straat, prijs, oppervlakte, website, link)
+            if int(prijs) < 1000 and int(oppervlakte) < 30 and "kamer" or "room" or "gezocht" or "wanted" not in straat:
+                writer.writerow({'stad' : stad, 'straat':straat, 'prijs':prijs, 'oppervlakte': oppervlakte, 'website': website, 'link': link})
+            else:
+                print("yo")
+                continue
+                print(stad, straat, prijs, oppervlakte, website, link)
 
             i += 1
 
+
 goThroughAllCitiesAndWebsites()
-printList()
+#printList()
 makeFile()
