@@ -21,7 +21,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <span> Roemie </span>
-  <span class="w3-bar-item w3-right">Logo</span>
+  <span class="w3-bar-item w3-right"><img width=30 height=30 src="http://www.freeiconspng.com/uploads/address-building-company-home-house-office-real-estate-icon--10.png"/></span>
 </div>
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
@@ -358,21 +358,24 @@ function createMap() {
             });
 
         // points
-        Amsterdam = [52.3740300, 4.8896900];
-    	Rotterdam = [51.9225000, 4.4791700];
+        Amsterdam = [215, 150];
+        Utrecht = [230, 175]
+    	Rotterdam = [190, 200];
+      DenHaag = [170, 175];
+      Groningen = [330, 80]
       console.log(Amsterdam[1])
       console.log(projection)
       // add circles to svg
       svg.selectAll(".mark")//adding mark in the group
-  		 .data([Amsterdam,Rotterdam])
+  		 .data([Amsterdam,Rotterdam,Utrecht,DenHaag,Groningen])
   		 .enter()
   		 .append("image")
   		 .attr('class', 'mark')
-  		 .attr('width', 10)
-  		 .attr('height', 10)
-  		 .attr("xlink:href", function(d) { return "http://files.softicons.com/download/game-icons/super-mario-icons-by-sandro-pereira/ico/Mushroom%20-%201UP.ico"})
-       .attr("x",20)
-       .attr("y",20)
+  		 .attr('width', 30)
+  		 .attr('height', 30)
+  		 .attr("xlink:href", "http://www.freeiconspng.com/uploads/address-building-company-home-house-office-real-estate-icon--10.png" )
+       .attr("x",function (d) { return d[0]; })
+       .attr("y",function (d) { return d[1]; })
      })
 }
 function createTable() {
@@ -391,7 +394,31 @@ function createTable() {
           { "data": "oppervlakte" },
           { "data": "website" },
           { "data": "link" }
-      ]
+      ],
+      "language": {
+        "decimal":        "",
+        "emptyTable":     "Geen data",
+        "info":           "_START_ tot _END_ van _TOTAL_ kamers",
+        "infoEmpty":      "0 tot 0 van de 0 kamers",
+        "infoFiltered":   "(gefiltered van _MAX_ kamers)",
+        "infoPostFix":    "",
+        "thousands":      ",",
+        "lengthMenu":     "Laat _MENU_ kamers zien",
+        "loadingRecords": "Aan het laden...",
+        "processing":     "Aan het zoeken...",
+        "search":         "Zoek:",
+        "zeroRecords":    "Geen resultaten gevonden",
+        "paginate": {
+            "first":      "Eerste ",
+            "last":       " Laatste",
+            "next":       " Volgende",
+            "previous":   "Vorige "
+        },
+        "aria": {
+            "sortAscending":  ": van hoog naar laag sorteren",
+            "sortDescending": ": van laag naar hoog sorteren"
+          }
+        }
   } );
   } );
 }

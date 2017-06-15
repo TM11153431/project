@@ -163,11 +163,23 @@ def kamers(paginas):
 
 def kamersInNederland(paginas, stad):
 
+    if stad is "Amsterdam":
+        stad1 = "amsterdam"
+
+    if stad is "Rotterdam":
+        stad1 = "rotterdam"
+
+    if stad is "Utrecht":
+        stad1 = "utrecht"
+
+    if stad is "Groningen":
+        stad1 = "groningen"
+
     #for each page, go through this loop
     for page in range(paginas):
         page = page + 1
         page = str(page)
-        url = ('https://www.kamersinnederland.nl/' + stad +'/pagina/'+page)
+        url = ('https://www.kamersinnederland.nl/' + stad1 +'/pagina/'+page)
         gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
         html = urlopen(url, context=gcontext)
         bsObj = BeautifulSoup(html, "html.parser")

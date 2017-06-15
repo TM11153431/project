@@ -1,5 +1,12 @@
-[INFO  - 2017-06-15T11:20:42.894Z] GhostDriver - Main - running on port 52114
-[INFO  - 2017-06-15T11:20:43.347Z] Session [aba358c0-51bc-11e7-aa52-9dc3a8816e89] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2017-06-15T11:20:43.347Z] Session [aba358c0-51bc-11e7-aa52-9dc3a8816e89] - page.customHeaders:  - {}
-[INFO  - 2017-06-15T11:20:43.347Z] Session [aba358c0-51bc-11e7-aa52-9dc3a8816e89] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-10.11 (El Capitan)-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2017-06-15T11:20:43.347Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: aba358c0-51bc-11e7-aa52-9dc3a8816e89
+[INFO  - 2017-06-15T12:32:44.981Z] GhostDriver - Main - running on port 64465
+[INFO  - 2017-06-15T12:32:45.665Z] Session [bbf0bba0-51c6-11e7-8b5f-c1f79d2c7847] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-06-15T12:32:45.665Z] Session [bbf0bba0-51c6-11e7-8b5f-c1f79d2c7847] - page.customHeaders:  - {}
+[INFO  - 2017-06-15T12:32:45.665Z] Session [bbf0bba0-51c6-11e7-8b5f-c1f79d2c7847] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-10.11 (El Capitan)-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-06-15T12:32:45.665Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: bbf0bba0-51c6-11e7-8b5f-c1f79d2c7847
+[ERROR - 2017-06-15T12:33:03.907Z] Session [bbf0bba0-51c6-11e7-8b5f-c1f79d2c7847] - page.onError - msg: undefined
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-06-15T12:33:03.923Z] Session [bbf0bba0-51c6-11e7-8b5f-c1f79d2c7847] - page.onError - stack:
+  (anonymous function) (http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5086a2631570a963:2)
+
+  phantomjs://platform/console++.js:263 in error
