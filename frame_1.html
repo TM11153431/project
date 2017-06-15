@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Programmeerproject</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -121,27 +121,27 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           <tr>
             <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
             <td>Amsterdam</td>
-            <td><i>x kamers</i></td>
+            <td id="aantal-amsterdam"><i>x kamers</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
             <td>Rotterdam</td>
-            <td><i>x kamers</i></td>
+            <td id="aantal-rotterdam"><i>x kamers</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
             <td>Groningen</td>
-            <td><i>x kamers</i></td>
+            <td id="aantal-groningen"><i>x kamers</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
             <td>Utrecht</td>
-            <td><i>x kamers</i></td>
+            <td id="aantal-utrecht"><i>x kamers</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
             <td>Den Haag</td>
-            <td><i>x kamers</i></td>
+            <td id="aantal-den-haag"><i>x kamers</i></td>
           </tr>
         </table>
       </div>
@@ -274,27 +274,36 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </div>
 
 <script>
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
 
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
+var json = $.getJSON("kamers.json", function(json) {
+});
 
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-    if (mySidebar.style.display === 'block') {
-        mySidebar.style.display = 'none';
-        overlayBg.style.display = "none";
-    } else {
-        mySidebar.style.display = 'block';
-        overlayBg.style.display = "block";
+
+setTotals()
+
+function changeTotal(city) {
+
+  var json = $.getJSON("kamers.json", function(json) {
+    var count = 0;
+    for (var i = 0; i < json.length; i++) {
+        if (json[i].stad == city) {
+            count++;
+        }
     }
+    if (city == "Den Haag") {
+      city = "den-haag"
+    }
+    count = count + " kamers"
+    console.log(count)
+    $('#aantal-' + city).text(count)
+  });
 }
-
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
-    overlayBg.style.display = "none";
+function setTotals() {
+  changeTotal("amsterdam")
+  changeTotal("rotterdam")
+  changeTotal("Den Haag")
+  changeTotal("utrecht")
+  changeTotal("groningen")
 }
 
 function createMap() {
@@ -356,7 +365,6 @@ function createMap() {
   		 })
      })
 }
-
 function createTable() {
   $(document).ready(function() {
   $('#example').DataTable( {
@@ -482,9 +490,16 @@ function createScatter() {
     })
 }
 
+
 createTable()
 createMap()
 createScatter()
+
+
+
+
+
+
 </script>
 
 </body>
