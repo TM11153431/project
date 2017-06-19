@@ -322,8 +322,8 @@ def makeFile():
         for link in links:
             stad = steden[i]
             straat = straten[i]
-            prijs = prijzen[i]
-            oppervlakte = oppervlaktes[i]
+            prijs = int(prijzen[i])
+            oppervlakte = int(oppervlaktes[i])
             #plaatsdatum = plaatsdata[i]
             #begindatum = begindata[i]
             #omschrijving = omschrijvingen[i]
@@ -332,7 +332,7 @@ def makeFile():
             #afbeelding3 = afbeeldingen3[i]
             website = websites[i]
             link = links[i]
-            if int(prijs) < 1000 and int(oppervlakte) < 30 and "kamer" or "room" or "gezocht" or "wanted" not in straat:
+            if round(prijs) < 1000 and int(oppervlakte) < 30 and "kamer" or "room" or "gezocht" or "wanted" not in straat:
                 writer.writerow({'stad' : stad, 'straat':straat, 'prijs':prijs, 'oppervlakte': oppervlakte, 'website': website, 'link': link})
             else:
                 print("yo")
