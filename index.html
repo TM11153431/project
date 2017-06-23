@@ -82,29 +82,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-half">
         <h5>Lijst van de steden</h5>
         <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-          <tr>
+          <tr id="regel-Amsterdam">
             <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
             <td>Amsterdam</td>
             <td id="aantal-Amsterdam"><i>x kamers</i></td>
           </tr>
-          <tr>
+          <tr id="regel-Rotterdam">
             <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
             <td>Rotterdam</td>
             <td id="aantal-Rotterdam"><i>x kamers</i></td>
           </tr>
-          <tr>
+          <tr id="regel-Groningen">
             <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
             <td>Groningen</td>
             <td id="aantal-Groningen"><i>x kamers</i></td>
           </tr>
-          <tr>
+          <tr id="regel-Utrecht">
             <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
             <td>Utrecht</td>
             <td id="aantal-Utrecht"><i>x kamers</i></td>
           </tr>
-          <tr>
+          <tr id="regel-DenHaag">
             <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
-            <td>Den Haag</td>
+            <td>DenHaag</td>
             <td id="aantal-den-haag"><i>x kamers</i></td>
           </tr>
         </table>
@@ -179,7 +179,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-center w3-padding w3-purple" style="width:75%">75%</div>
     </div>
 
-    <p>Den Haag</p>
+    <p>DenHaag</p>
     <div class="w3-grey">
       <div class="w3-container w3-center w3-padding w3-blue" style="width:75%">75%</div>
     </div>
@@ -287,6 +287,7 @@ function createBar(year, color) {
         .data(data)
       .enter().append("rect")
         .style("fill", color)
+        .attr("id", function(d) { return ("Bar" + year + d.stad)})
         .attr("x", function(d) { return x(d.stad); })
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d.prijs); })
@@ -303,7 +304,7 @@ function changeTotal(city) {
             count++;
         }
     }
-    if (city == "Den Haag") {
+    if (city == "DenHaag") {
       city = "den-haag"
     }
     count = count + " kamers"
@@ -313,7 +314,7 @@ function changeTotal(city) {
 function setTotals() {
   changeTotal("Amsterdam")
   changeTotal("Rotterdam")
-  changeTotal("Den Haag")
+  changeTotal("DenHaag")
   changeTotal("Utrecht")
   changeTotal("Groningen")
 }
@@ -358,13 +359,11 @@ function createMap() {
             });
 
         // points
-        Amsterdam = [215, 150];
-        Utrecht = [230, 175]
-    	Rotterdam = [190, 200];
-      DenHaag = [170, 175];
-      Groningen = [330, 80]
-      console.log(Amsterdam[1])
-      console.log(projection)
+        Amsterdam = [215, 150, "Amsterdam"];
+        Utrecht = [230, 175, "Utrecht"]
+    	Rotterdam = [190, 200, "Rotterdam"];
+      DenHaag = [170, 175, "DenHaag"];
+      Groningen = [330, 80, "Groningen"]
       // add circles to svg
       svg.selectAll(".mark")//adding mark in the group
   		 .data([Amsterdam,Rotterdam,Utrecht,DenHaag,Groningen])
@@ -376,6 +375,8 @@ function createMap() {
   		 .attr("xlink:href", "http://www.freeiconspng.com/uploads/address-building-company-home-house-office-real-estate-icon--10.png" )
        .attr("x",function (d) { return d[0]; })
        .attr("y",function (d) { return d[1]; })
+       .on("mouseover", onMouseOver)
+       .on("mouseout", onMouseOut);
      })
 }
 function createTable() {
@@ -447,7 +448,7 @@ function createScatter() {
       yAxis = d3.svg.axis().scale(yScale).orient("left");
 
   // setup fill color
-  var cValue = function(d) { return d.straat;},
+  var cValue = function(d) { return d.stad;},
       color = d3.scale.category10();
 
   // add the graph canvas to the body of the webpage
@@ -469,7 +470,6 @@ function createScatter() {
     data.forEach(function(d) {
       d.oppervlakte = +d.oppervlakte;
       d.prijs = +d.prijs
-  //    console.log(d);
     });
 
     // don't want dots overlapping axis, so add in buffer to data domain
@@ -509,11 +509,12 @@ function createScatter() {
       .attr("cx", xMap)
       .attr("cy", yMap)
       .style("fill", function(d) { return color(cValue(d));})
+      .attr("id", function(d) { return "Dot" + d.stad})
       .on("mouseover", function(d) {
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(xValue(d)
+          tooltip.html(d.stad + ": (" +xValue(d)
 	        + ", " + yValue(d) + ")")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
@@ -527,41 +528,29 @@ function createScatter() {
     })
 }
 
-
-function highlight(type) {
-  if (type == null) d3.selectAll(".node").classed("active", false);
-  else d3.selectAll(".node." + type).classed("active", true);
+function onMouseOver(d, i) {
+  d3.select(this).attr({
+    width: 50,
+    height: 50
+  })
+  d3.select(this).append("text").attr({
+    id: "Logo" + d[2]
+  })
+  d3.select("#regel-" + d[2]).attr("bgcolor", "#0062b6");
+  d3.select("#Barolddata" + d[2]).style("fill", "#0062b6");
+  d3.select("#Barnewdata" + d[2]).style("fill", "#0062b6");
+  d3.selectAll("#Dot" + d[2]).attr("r", 6)
 }
 
-// Clear the previously-active brush, if any.
-  function brushstart(p) {
-    if (brushCell !== this) {
-      d3.select(brushCell).call(brush.clear());
-      x.domain(domainByTrait[p.x]);
-      y.domain(domainByTrait[p.y]);
-      brushCell = this;
-    }
-  }
-
-  // Highlight the selected circles.
-  function brushmove(p) {
-    var e = brush.extent();
-    svg.selectAll("circle").classed("hidden", function(d) {
-      return e[0][0] > d[p.x] || d[p.x] > e[1][0]
-          || e[0][1] > d[p.y] || d[p.y] > e[1][1];
-    });
-  }
-
-  // If the brush is empty, select all circles.
-  function brushend() {
-    if (brush.empty()) svg.selectAll(".hidden").classed("hidden", false);
-  }
-});
-
-function cross(a, b) {
-  var c = [], n = a.length, m = b.length, i, j;
-  for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
-  return c;
+function onMouseOut(d, i) {
+  d3.select(this).attr({
+    width: 30,
+    height: 30
+  })
+  d3.select("#regel-" + d[2]).attr("bgcolor", "#ffffff");
+  d3.select("#Barolddata" + d[2]).style("fill", "#028482");
+  d3.select("#Barnewdata" + d[2]).style("fill", "#7aba7a");
+  d3.selectAll("#Dot" + d[2]).attr("r", 3)
 }
 
 
