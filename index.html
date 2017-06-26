@@ -227,6 +227,28 @@ createScatter()
 createBar("olddata", "#028482")
 createBar("newdata", "#7ABA7A")
 
+function changeTotal(city) {
+  var json = $.getJSON("kamers.json", function(json) {
+    var count = 0;
+    for (var i = 0; i < json.length; i++) {
+        if (json[i].stad == city) {
+            count++;
+        }
+    }
+    if (city == "DenHaag") {
+      city = "den-haag"
+    }
+    count = count + " kamers"
+    $('#aantal-' + city).text(count)
+  });
+}
+function setTotals() {
+  changeTotal("Amsterdam")
+  changeTotal("Rotterdam")
+  changeTotal("DenHaag")
+  changeTotal("Utrecht")
+  changeTotal("Groningen")
+}
 
 function createBar(year, color) {
   var margin = {top: 20, right: 20, bottom: 70, left: 40},
