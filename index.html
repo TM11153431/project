@@ -376,7 +376,8 @@ function createMap() {
        .attr("x",function (d) { return d[0]; })
        .attr("y",function (d) { return d[1]; })
        .on("mouseover", onMouseOver)
-       .on("mouseout", onMouseOut);
+       .on("mouseout", onMouseOut)
+	.on("click", onClick);
      })
 }
 function createTable() {
@@ -553,6 +554,23 @@ function onMouseOut(d, i) {
   d3.selectAll("#Dot" + d[2]).attr("r", 3)
 }
 
+function onClick(d, i) {
+	if (d3.select(this).attr = 30)
+	{
+	  d3.select(this).attr({
+	    width: 50,
+	    height: 50
+	  })
+	  d3.select("#regel-" + d[2]).attr("bgcolor", "#0062b6");
+	  d3.select("#Barolddata" + d[2]).style("fill", "#0062b6");
+	  d3.select("#Barnewdata" + d[2]).style("fill", "#0062b6");
+	  d3.selectAll("#Dot" + d[2]).attr("r", 6)
+	}
+	else 
+	{
+		
+	}
+}
 
 
 
