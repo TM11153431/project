@@ -220,6 +220,7 @@ var json = $.getJSON("kamers.json", function(json) {
 
 
 setTotals()
+changeColors()
 createTable()
 createMap()
 createScatter()
@@ -295,7 +296,26 @@ function createBar(year, color) {
 
   });
 }
-function changeTotal(city) {
+	
+function colorCode(city) {
+	if (city == "Amsterdam") {
+		return "green"
+	}
+	else if (city == "Rotterdam") {
+		return "orange"
+	}
+	if (city == "DenHaag") {
+		return "blue"
+	}
+	else if (city == "Groningen") {
+		return "purple"
+	}
+	else if (city == "Utrecht") {
+		return "red"
+	}
+}
+	
+function changeColor() {
 
   var json = $.getJSON("kamers.json", function(json) {
     var count = 0;
@@ -307,16 +327,15 @@ function changeTotal(city) {
     if (city == "DenHaag") {
       city = "den-haag"
     }
-    count = count + " kamers"
-    $('#aantal-' + city).text(count)
+    $('.w3-container w3-center w3-padding w3-' + colorCode(city)).style.width = 1000/count + "%"
   });
 }
-function setTotals() {
-  changeTotal("Amsterdam")
-  changeTotal("Rotterdam")
-  changeTotal("DenHaag")
-  changeTotal("Utrecht")
-  changeTotal("Groningen")
+function changeColors() {
+  changeColor("Amsterdam")
+  changeColor("Rotterdam")
+  changeColor("DenHaag")
+  changeColor("Utrecht")
+  changeColor("Groningen")
 }
 function createMap() {
 
@@ -572,6 +591,9 @@ function onClick(d, i) {
 	}
 }
 
+function setTotals {
+	
+}
 
 
 </script>
