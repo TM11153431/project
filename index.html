@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://datatables.net/release-datatables/media/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.2/css/select.bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -24,115 +24,107 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <span class="w3-bar-item w3-right"><img width=30 height=30 src="http://www.freeiconspng.com/uploads/address-building-company-home-house-office-real-estate-icon--10.png"/></span>
 </div>
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<div class="w3-main" style="margin-top:43px;">
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
     <h5><b><i class="fa fa-dashboard"></i> Kamers voor studenten </b></h5>
   </header>
 
-  <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3></h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Kaart</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3></h3>
-        </div>
-        <div class="w3-clear"></div>
-        <a href="#story"><h4>Story</h4></a>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3></h3>
-        </div>
-        <div class="w3-clear"></div>
-        <a href="#scatter"><h4>Scattergraph</h4></a>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3></h3>
-        </div>
-        <div class="w3-clear"></div>
-        <a href="#tabel"><h4>Listings</h4></a>
-      </div>
-    </div>
-  </div>
-
+  
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
-      <div id = "Map" class="w3-half">
-        <h5>Kaart van Nederland</h5>
+      <div class="w3-half">
+	  <div class="w3-half">
+        <div id= "Map"> <h5>Kaart van Nederland</h5> </div>
+		  <div id="scatter" class="w3-panel">
+    <h5> Scattergraph </h5>
+    <div id="scattergraph"></div>
+  </div>
       </div>
       <div class="w3-half">
         <h5>Lijst van de steden</h5>
+		<br>
         <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-          <tr id="regel-Amsterdam">
+          <tr id="regel-Amsterdam" onmouseover="onMouseOver('Amsterdam')" onmouseout="onMouseOut('Amsterdam')" onclick="onClick('Amsterdam')">
             <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
             <td>Amsterdam</td>
-            <td id="aantal-Amsterdam"><i>x kamers</i></td>
+            <td id="aantal-Amsterdam" ><i>x kamers</i></td>
           </tr>
-          <tr id="regel-Rotterdam">
+          <tr id="regel-Rotterdam" onmouseover="onMouseOver('Rotterdam')" onmouseout="onMouseOut('Rotterdam')" onclick="onClick('Rotterdam')">
             <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
             <td>Rotterdam</td>
             <td id="aantal-Rotterdam"><i>x kamers</i></td>
           </tr>
-          <tr id="regel-Groningen">
-            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+          <tr id="regel-Groningen"  onmouseover="onMouseOver('Groningen')" onmouseout="onMouseOut('Groningen')" onclick="onClick('Groningen')">
+            <td><i class="fa fa-users w3-text-green w3-large"></i></td>
             <td>Groningen</td>
             <td id="aantal-Groningen"><i>x kamers</i></td>
           </tr>
-          <tr id="regel-Utrecht">
-            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+          <tr id="regel-Utrecht" onmouseover="onMouseOver('Utrecht')" onmouseout="onMouseOut('Utrecht')" onclick="onClick('Utrecht')">
+            <td><i class="fa fa-comment w3-text-purple w3-large"></i></td>
             <td>Utrecht</td>
             <td id="aantal-Utrecht"><i>x kamers</i></td>
           </tr>
-          <tr id="regel-DenHaag">
-            <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+          <tr id="regel-DenHaag" onmouseover="onMouseOver('DenHaag')" onmouseout="onMouseOut('DenHaag')" onclick="onClick('DenHaag')">
+            <td><i class="fa fa-bookmark w3-text-orange w3-large"></i></td>
             <td>DenHaag</td>
             <td id="aantal-den-haag"><i>x kamers</i></td>
           </tr>
         </table>
-      </div>
+		<br>
+		<br>
+		<br>
+		<div class="w3-container">
+    <p id="colorbarText-Amsterdam">Amsterdam</p>
+    <div class="w3-grey" onmouseover="onMouseOver('Amsterdam')" onmouseout="onMouseOut('Amsterdam')" onclick="onClick('Amsterdam')">
+      <div id="colorBar-Amsterdam" class="w3-container w3-center w3-padding w3-blue"></div>
+    </div>
+
+    <p>Rotterdam</p>
+    <div class="w3-grey" onmouseover="onMouseOver('Rotterdam')" onmouseout="onMouseOut('Rotterdam')" onclick="onClick('Rotterdam')">
+      <div id="colorBar-Rotterdam" class="w3-container w3-center w3-padding w3-red"></div>
+    </div>
+
+    <p>Groningen</p>
+    <div class="w3-grey" onmouseover="onMouseOver('Groningen')" onmouseout="onMouseOut('Groningen')" onclick="onClick('Groningen')">
+      <div id="colorBar-Groningen" class="w3-container w3-center w3-padding w3-green"></div>
+    </div>
+
+    <p>Utrecht</p>
+    <div class="w3-grey" onmouseover="onMouseOver('Utrecht')" onmouseout="onMouseOut('Utrecht')" onclick="onClick('Utrecht')">
+      <div id="colorBar-Utrecht" class="w3-container w3-center w3-padding w3-purple"></div>
+    </div>
+	
+    <p>DenHaag</p>
+    <div class="w3-grey" onmouseover="onMouseOver('DenHaag')" onmouseout="onMouseOut('DenHaag')" onclick="onClick('DenHaag')">
+      <div id="colorBar-DenHaag" class="w3-container w3-center w3-padding w3-orange"></div>
     </div>
   </div>
-  <hr>
-  <div class="w3-panel">
-    <div class="w3-row-padding" style="margin:0 -16px">
+      </div>
+    </div>
+	<div class="w3-half">
+	<div class="w3-row-padding" style="margin:0 -16px">
       <div id="story" class="w3-half">
         <h5>Hoe was het in 2014?</h5>
         In een <a href="http://www.hbostart.nl/studentenkamers/huurpijs-studentenkamer/"> onderzoek </a> van de Landelijke Studentenvakbond (LSVb) in 2014 bleek dat Amsterdam veruit de duurste stad is om een kamer te huren. Gemiddelde euro per m2 was daar ook het hoogst. Hieronder de gemiddelde prijzen per stad.
         <div id="olddata"></div>
+		<div id="olddataM2"></div>
       </div>
       <div class="w3-half">
         <h5>Hoe is het nu?</h5>
         De prijzen zijn voor alle steden gestegen sinds 2014. Utrecht is nog duurder geworden dan Rotterdam. Groningen is met een klein beetje stijgen. Voor Amsterdam is deze stijging heel erg hoog. Vergeleken met de andere steden is Amsterdam ook veel meer gestegen. Hieronder het nieuw overzicht.
         <div id="newdata"></div>
+		<div id="newdataM2"></div>
       </div>
     </div>
+	</div>
   </div>
-  <div id="scatter" class="w3-panel">
-    <h5> Scattergraph </h5>
-    <div id="scattergraph"></div>
   </div>
+  <hr>
   <div id="tabel" class="w3-panel">
     <h5>Vind op kamers</h5>
-    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Stad</th>
@@ -157,33 +149,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   </div>
   <hr>
-  <div class="w3-container">
-    <h5>Algemene informatie</h5>
-    <p>Amsterdam</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-green" style="width:100%">1000</div>
-    </div>
-
-    <p>Rotterdam</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-orange" style="width:85%">850</div>
-    </div>
-
-    <p>Utrecht</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-red" style="width:10%">100</div>
-    </div>
-
-    <p>Groningen</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-purple" style="width:75%">75%</div>
-    </div>
-
-    <p>DenHaag</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-blue" style="width:75%">75%</div>
-    </div>
-  </div>
   <hr>
   <br>
   <div class="w3-container w3-dark-grey w3-padding-32">
@@ -218,14 +183,98 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 var json = $.getJSON("kamers.json", function(json) {
 });
 
-
 setTotals()
 changeColors()
 createTable()
 createMap()
 createScatter()
-createBar("olddata", "#028482")
-createBar("newdata", "#7ABA7A")
+createBarTotal("olddata", "2014")
+createBarTotal("newdata", "2017")
+createBarM2("olddata", "olddataM2", "2014") 
+createBarM2("newdata", "newdataM2", "2017")
+
+function colorCodeCity(city) {
+	if (city == "Amsterdam") {
+		return "#2196F3"
+	}
+	else if (city == "Rotterdam") {
+		return "#F44336"
+	}
+	if (city == "DenHaag") {
+		return "#9C27B0"
+	}
+	else if (city == "Groningen") {
+		return "#4CAF50"
+	}
+	else if (city == "Utrecht") {
+		return "#FF9800"
+	}
+}
+
+function createBarM2(file, identifier, year) {
+  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 250 - margin.left - margin.right,
+    height = 250 - margin.top - margin.bottom;
+
+  var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+  var y = d3.scale.linear().range([height, 0]);
+
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom")
+
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("left")
+      .ticks(10);
+
+
+  var svg = d3.select("#" + identifier).append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+  d3.csv(file + ".csv", function(error, data) {
+
+      data.forEach(function(d) {
+		  d.m2 = parseInt(d.m2)
+		  d.m2 = Math.round(d.m2);
+		  console.log(d.m2)
+      });
+
+    x.domain(data.map(function(d) { return d.stad; }));
+    y.domain([0, 25]);
+
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+      .append("text")
+		.attr("x", 210)
+        .attr("y", 0)
+		.attr("font-size", "10px")
+        .attr("dy", ".071em")
+        .style("text-anchor", "end")
+        .text("Gemiddele prijs (€) per m2 per stad in " + year);
+
+    svg.selectAll("bar")
+        .data(data)
+      .enter().append("rect")
+        .style("fill", function(d) { return d.color; })
+        .attr("id", function(d) { return ("Bar" + identifier + d.stad)})
+        .attr("x", function(d) { return x(d.stad); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return y(d.m2); })
+        .attr("height", function(d) { return height - y(d.m2); })
+       .on("mouseover", function (d) { return onMouseOver(d.stad); }) 
+       .on("mouseout", function (d) { return onMouseOut(d.stad); })
+	   .on("click", function (d) { return onClick(d.stad); });
+
+  });
+}
 
 function changeTotal(city) {
   var json = $.getJSON("kamers.json", function(json) {
@@ -249,11 +298,10 @@ function setTotals() {
   changeTotal("Utrecht")
   changeTotal("Groningen")
 }
-
-function createBar(year, color) {
-  var margin = {top: 20, right: 20, bottom: 70, left: 40},
-    width = 300 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+function createBarTotal(identifier, year) {
+  var margin = {top: 20, right: 20, bottom: 20, left: 40},
+    width = 250 - margin.left - margin.right,
+    height = 250 - margin.top - margin.bottom;
 
   var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
 
@@ -269,56 +317,48 @@ function createBar(year, color) {
       .ticks(10);
 
 
-  var svg = d3.select("#" + year).append("svg")
+  var svg = d3.select("#" + identifier).append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.csv(year + ".csv", function(error, data) {
+  d3.csv(identifier + ".csv", function(error, data) {
 
       data.forEach(function(d) {
           d.prijs = +d.prijs;
       });
 
     x.domain(data.map(function(d) { return d.stad; }));
-    y.domain([0, d3.max(data, function(d) { return d.prijs; })]);
+    y.domain([0, 500]);
 
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-      .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.38em")
-        .attr("dy", "-.55em")
-        .style("font-size", "10px")
-        .attr("transform", "rotate(-90)" );
 
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis)
       .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
+		.attr("x", 200)
+        .attr("y", 0)
+		.attr("font-size", "10px")
+        .attr("dy", ".071em")
         .style("text-anchor", "end")
-        .text("Value ($)");
+        .text("Gemiddele prijs in euros per stad in " + year);
 
     svg.selectAll("bar")
         .data(data)
       .enter().append("rect")
-        .style("fill", color)
-        .attr("id", function(d) { return ("Bar" + year + d.stad)})
+        .style("fill", function(d) { return d.color} )
+        .attr("id", function(d) { return ("Bar" + identifier + d.stad)})
         .attr("x", function(d) { return x(d.stad); })
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d.prijs); })
-        .attr("height", function(d) { return height - y(d.prijs); });
-
-  });
+        .attr("height", function(d) { return height - y(d.prijs); })
+       .on("mouseover", function (d) { return onMouseOver(d.stad); }) 
+       .on("mouseout", function (d) { return onMouseOut(d.stad); })
+  .on("click", function (d) { return onClick(d.stad); });
+     });
 }
-	
 function colorCode(city) {
 	if (city == "Amsterdam") {
 		return "green"
@@ -336,7 +376,6 @@ function colorCode(city) {
 		return "red"
 	}
 }
-	
 function changeColor(city) {
 
   var json = $.getJSON("kamers.json", function(json) {
@@ -346,10 +385,8 @@ function changeColor(city) {
             count++;
         }
     }
-    if (city == "DenHaag") {
-      city = "den-haag"
-    }
-    $('.w3-container w3-center w3-padding w3-' + colorCode(city)).style.width = 1000/count + "%"
+	newWidth = Math.round(count/10) + "%"
+    d3.select("#colorBar-" + city).style("width", newWidth).style("fill", "#0062b6").text(count)
   });
 }
 function changeColors() {
@@ -361,8 +398,8 @@ function changeColors() {
 }
 function createMap() {
 
-    var width = 400,
-        height = 400;
+    var width = 300,
+        height = 300;
 
     var colour = d3.scale.category20();
 
@@ -400,30 +437,31 @@ function createMap() {
             });
 
         // points
-        Amsterdam = [215, 150, "Amsterdam"];
-        Utrecht = [230, 175, "Utrecht"]
-    	Rotterdam = [190, 200, "Rotterdam"];
-      DenHaag = [170, 175, "DenHaag"];
-      Groningen = [330, 80, "Groningen"]
+        Amsterdam = [170, 110, "Amsterdam"];
+        Utrecht = [170, 135, "Utrecht"]
+    	Rotterdam = [150, 150, "Rotterdam"];
+      DenHaag = [135, 130, "DenHaag"];
+      Groningen = [235, 50, "Groningen"]
       // add circles to svg
       svg.selectAll(".mark")//adding mark in the group
   		 .data([Amsterdam,Rotterdam,Utrecht,DenHaag,Groningen])
   		 .enter()
   		 .append("image")
   		 .attr('class', 'mark')
-  		 .attr('width', 30)
-  		 .attr('height', 30)
+  		 .attr('width', 20)
+  		 .attr('height', 20)
   		 .attr("xlink:href", "http://www.freeiconspng.com/uploads/address-building-company-home-house-office-real-estate-icon--10.png" )
        .attr("x",function (d) { return d[0]; })
        .attr("y",function (d) { return d[1]; })
-       .on("mouseover", onMouseOver)
-       .on("mouseout", onMouseOut)
-	.on("click", onClick);
+	   .attr("id", function (d) { return ("logo-" + d[2])})
+       .on("mouseover", function (d) { return onMouseOver(d[2]); }) 
+       .on("mouseout", function (d) { return onMouseOut(d[2]); }) 
+	.on("click", function (d) { return onClick(d[2]); });
      })
 }
 function createTable() {
   $(document).ready(function() {
-  $('#example').DataTable( {
+  $('#table').DataTable( {
     "ajax": {
           "url": 'kamers.json',
           // Get JSON data from a plain array
@@ -436,7 +474,10 @@ function createTable() {
           { "data": "prijs" },
           { "data": "oppervlakte" },
           { "data": "website" },
-          { "data": "link" }
+          { "data": "link",
+			"render": function ( data, type, full, meta ) {
+			  return '<a href="'+data+'">Ga naar kamer link</a>'; }
+		}
       ],
       "language": {
         "decimal":        "",
@@ -463,12 +504,16 @@ function createTable() {
           }
         }
   } );
+  $('#table tbody').on( 'click', function () {
+        var data = $('#table').DataTable().row( $(this).parents('tr') ).data();
+        alert( data[ 5 ] );
+    } );
   } );
 }
 function createScatter() {
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
-      width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
+      width = 300 - margin.left - margin.right,
+      height = 300 - margin.top - margin.bottom;
 
   /*
    * value accessor - returns the value to encode for a given data object.
@@ -547,7 +592,7 @@ function createScatter() {
       .data(data)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr("r", 3.5)
+      .attr("r", 1.5)
       .attr("cx", xMap)
       .attr("cy", yMap)
       .style("fill", function(d) { return color(cValue(d));})
@@ -556,72 +601,67 @@ function createScatter() {
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d.stad + ": (" +xValue(d)
+          tooltip.html(d.straat + "("+ d.stad + ")" + ": (" +xValue(d)
 	        + ", " + yValue(d) + ")")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
+		  onMouseOver(d.stad);
       })
       .on("mouseout", function(d) {
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
-      });
-
+		  onMouseOut(d.stad);
+      })
+		.on("click", function (d) { return onClick(d.link); });
     })
 }
 
-function onMouseOver(d, i) {
-  d3.select(this).attr({
-    width: 50,
-    height: 50
+function onMouseOver(city) {
+  d3.select("#logo-" + city).attr({
+    width: 40,
+    height: 40
   })
-  d3.select(this).append("text").attr({
-    id: "Logo" + d[2]
-  })
-  d3.select("#regel-" + d[2]).attr("bgcolor", "#0062b6");
-  d3.select("#Barolddata" + d[2]).style("fill", "#0062b6");
-  d3.select("#Barnewdata" + d[2]).style("fill", "#0062b6");
-  d3.selectAll("#Dot" + d[2]).attr("r", 6)
+  d3.select("#regel-" + city).attr("bgcolor", "#0062b6");
+  d3.select("#Barolddata" + city).style("fill", "#0062b6");
+  d3.select("#Barnewdata" + city).style("fill", "#0062b6");
+  d3.select("#BarolddataM2" + city).style("fill", "#0062b6");
+  d3.select("#BarnewdataM2" + city).style("fill", "#0062b6");
+  d3.selectAll("#Dot" + city).attr("r", 3)
+}
+function onMouseOut(city) {
+	d3.select("#logo-" + city).attr({
+	width: 20,
+	height: 20
+	})
+	d3.select("#regel-" + city).attr("bgcolor", "FFFFFF");
+	d3.select("#Barolddata" + city).style("fill", colorCodeCity(city));
+	d3.select("#Barnewdata" + city).style("fill", colorCodeCity(city));
+	d3.select("#BarolddataM2" + city).style("fill", colorCodeCity(city));
+	d3.select("#BarnewdataM2" + city).style("fill", colorCodeCity(city));
+	d3.selectAll("#Dot" + city).attr("r", 1.5)
 }
 
-function onMouseOut(d, i) {
-  d3.select(this).attr({
-    width: 30,
-    height: 30
+function onClick(city) {
+	table = $('#table').DataTable()
+	table.search(city).draw()
+	scrollTo()
+	d3.select("#logo-" + city).attr({
+    width: 40,
+    height: 40
   })
-  d3.select("#regel-" + d[2]).attr("bgcolor", "#ffffff");
-  d3.select("#Barolddata" + d[2]).style("fill", "#028482");
-  d3.select("#Barnewdata" + d[2]).style("fill", "#7aba7a");
-  d3.selectAll("#Dot" + d[2]).attr("r", 3)
+  d3.select("#regel-" + city).attr("bgcolor", "#0062b6");
+  d3.select("#Barolddata" + city).style("fill", "#0062b6");
+  d3.select("#Barnewdata" + city).style("fill", "#0062b6");
+  d3.select("#BarolddataM2" + city).style("fill", "#0062b6");
+  d3.select("#BarnewdataM2" + city).style("fill", "#0062b6");
+  d3.selectAll("#Dot" + city).attr("r", 3)
 }
 
-function onClick(d, i) {
-	if (d3.select(this).attr = 30)
-	{
-	  d3.select(this).attr({
-	    width: 50,
-	    height: 50
-	  })
-	  d3.select("#regel-" + d[2]).attr("bgcolor", "#0062b6");
-	  d3.select("#Barolddata" + d[2]).style("fill", "#0062b6");
-	  d3.select("#Barnewdata" + d[2]).style("fill", "#0062b6");
-	  d3.selectAll("#Dot" + d[2]).attr("r", 6)
-	}
-	else 
-	{
-	d3.select(this).attr({
-	    width: 30,
-	    height: 30
-	  })
-	  d3.select("#regel-" + d[2]).attr("bgcolor", "#ffffff");
-	  d3.select("#Barolddata" + d[2]).style("fill", "#028482");
-	  d3.select("#Barnewdata" + d[2]).style("fill", "#7aba7a");
-	  d3.selectAll("#Dot" + d[2]).attr("r", 3)	
-	}
-}
-
-console.log("update4")
-
+ function scrollTo() {
+            $('html, body').animate({ scrollTop: $('#tabel').offset().top }, 'slow');
+            return false;
+ }
 
 </script>
 
