@@ -107,13 +107,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	<div class="w3-row-padding" style="margin:0 -16px">
       <div id="story" class="w3-half">
         <h5>Hoe was het in 2014?</h5>
-        In een <a href="http://www.hbostart.nl/studentenkamers/huurpijs-studentenkamer/"> onderzoek </a> van de Landelijke Studentenvakbond (LSVb) in 2014 bleek dat Amsterdam veruit de duurste stad is om een kamer te huren. Gemiddelde euro per m2 was daar ook het hoogst. Hieronder de gemiddelde prijzen per stad.
+        In een <i><a href="http://www.hbostart.nl/studentenkamers/huurpijs-studentenkamer/"> onderzoek van de Landelijke Studentenvakbond (LSVb) </a></i> in 2014 bleek dat Amsterdam veruit de duurste stad is om een kamer te huren (gemiddeld €425 voor een kamer). Gemiddelde euro per m2 (€20,42/m2) was daar ook het hoogst. Wat ook opvallend is is dat Rotterdam de een-na-duurste stad is om een kamer te huren maar dat de gemiddelde prijs per m2 het goedkoopst is (€12,79/m2). Hieronder de gemiddelde prijzen per stad.
         <div id="olddata"></div>
 		<div id="olddataM2"></div>
       </div>
       <div class="w3-half">
         <h5>Hoe is het nu?</h5>
-        De prijzen zijn voor alle steden gestegen sinds 2014. Utrecht is nog duurder geworden dan Rotterdam. Groningen is met een klein beetje stijgen. Voor Amsterdam is deze stijging heel erg hoog. Vergeleken met de andere steden is Amsterdam ook veel meer gestegen. Hieronder het nieuw overzicht.
+        De prijzen zijn voor alle steden gestegen sinds 2014. Utrecht is nog duurder geworden dan Rotterdam en de gemiddelde prijs per m2 is ook flink gestegen (van €13,47 naar €17,56). Groningen blijft de goedkoopste stad om een kamer te huren (in totale prijzen met een gemiddelde prijs van €30,42) en in Rotterdam krijg je het meest voor je geld want daar blijft de gemiddelde prijs per m2 het laagst (€13,98 per m2).
         <div id="newdata"></div>
 		<div id="newdataM2"></div>
       </div>
@@ -306,6 +306,10 @@ function createBarTotal(identifier, year) {
   var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
 
   var y = d3.scale.linear().range([height, 0]);
+	
+	var tooltip2 = d3.select("body").append("div")
+      .attr("class", "tooltip2")
+      .style("opacity", 0);
 
   var xAxis = d3.svg.axis()
       .scale(x)
@@ -354,8 +358,19 @@ function createBarTotal(identifier, year) {
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d.prijs); })
         .attr("height", function(d) { return height - y(d.prijs); })
-       .on("mouseover", function (d) { return onMouseOver(d.stad); }) 
-       .on("mouseout", function (d) { return onMouseOut(d.stad); })
+       .on("mouseover", function (d) { tooltip2.transition()
+               .duration(200)
+			   .style("opacity", .9);
+          tooltip2.html(d.stad)
+               .style("left", (d3.event.pageX + 5) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
+			   onMouseOver(d.stad); }) 
+       .on("mouseout", function(d) {
+          tooltip2.transition()
+               .duration(500)
+               .style("opacity", 0);
+		  onMouseOut(d.stad);
+      })
   .on("click", function (d) { return onClick(d.stad); });
      });
 }
@@ -400,7 +415,7 @@ function createMap() {
 
     var width = 300,
         height = 300;
-
+	
     var colour = d3.scale.category20();
 
     var projection = d3.geo.mercator()
