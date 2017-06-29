@@ -29,8 +29,8 @@ Details about the process can be found in the process book. To get an idea, the 
 The used technology is split in three sections: 
 
 1. Scraper
-..* Python 3.5.2
-..* Selenium 
+* Python 3.5.2
+* Selenium 
 ..* BeautifulSoup4
 ..* Phantomjs 2.1
 	
