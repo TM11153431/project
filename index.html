@@ -642,8 +642,8 @@ function onMouseOver(city) {
   d3.select("#Barnewdata" + city).style("fill", "#0062b6");
   d3.select("#BarolddataM2" + city).style("fill", "#0062b6");
   d3.select("#BarnewdataM2" + city).style("fill", "#0062b6");
-console.log("colorbarText-" + city)
-  d3.select("colorbarText-" + city).attr("background-color", "#0062b6");
+console.log("colorBar-" + city)
+  d3.select("colorBar-" + city).attr("background-color", "#0062b6");
   d3.selectAll("#Dot" + city).attr("r", 3)
 }
 function onMouseOut(city) {
