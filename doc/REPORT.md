@@ -13,14 +13,14 @@ Roemie gathers different offerings on one website. The data is presented in a sc
 ## The process
 
 There were several big steps to the development of the product:
-[1] Identifying the problem and imagining a solution
-[2] Designing the layout and deciding on what I wanted to visualize. 
-[3] Building scrapers to gather data from different room-offering websites. 
-[4] Cleaning and formating the data.
-[5] Building the visualizations. 
-[6] Linking the visualizations.
-[7] Tell a story around the visualizations.
-[8] Remove bugs, clean and format code and write this report. 
+1. Identifying the problem and imagining a solution
+2. Designing the layout and deciding on what I wanted to visualize. 
+3. Building scrapers to gather data from different room-offering websites. 
+4. Cleaning and formating the data.
+5. Building the visualizations. 
+6. Linking the visualizations.
+7. Tell a story around the visualizations.
+8. Remove bugs, clean and format code and write this report. 
 
 Details about the process can be found in the process book. To get an idea, the first week (first four days) was spent on [1] - [3]. The second week (days 5 to 9) was spent on [4] and [5]. The third week (days 10 to 14) was spent on completing [5] and making progress in [6]. The fourth week (days 15 to 19) was spent on finishing [6], [7] and [8].
 
@@ -28,43 +28,43 @@ Details about the process can be found in the process book. To get an idea, the 
 
 The used technology is split in three sections: 
 
-[1] Scraper
-	[x] Python 3.5.2
-	[x] Selenium 
-	[x] BeautifulSoup4
-	[x] Phantomjs 2.1
+1. Scraper
+..* Python 3.5.2
+..* Selenium 
+..* BeautifulSoup4
+..* Phantomjs 2.1
 	
-[2] HTML/CSS
-	[x] Bootstrap
-	[x] W3
+2. HTML/CSS
+..* Bootstrap
+..* W3
 	
-[3] Javascript
-	[x] D3 V3
-	[x] D3 Topojson
-	[x] jquery
-	[x] Bootstrap dataTables
+3. Javascript
+..* D3 V3
+..* D3 Topojson
+..* jquery
+..* Bootstrap dataTables
 	
 	
 ## Features
 
-[x] When a city (in any visualization/html element) is hovered on, the city is highlighted in the Roemie color in all other visualizations. 
-[x] When hovered out, this function ceases and all elements go back to their color. 
-[x] When a city on all the elements but the scattergraph is clicked, the windows scrolls to the table with a filter on the selected city. 
-[x] When a datapoint on the scattergraph is clicked, the room is selected in the table. 
-[x] All the data is set automatically (and thus easily table - even the totals)
-[x] In the table, one can filter, sort and rearrange. 
-[x] In the table, one can click through to the room offering. 
+* When a city (in any visualization/html element) is hovered on, the city is highlighted in the Roemie color in all other visualizations. 
+* When hovered out, this function ceases and all elements go back to their color. 
+* When a city on all the elements but the scattergraph is clicked, the windows scrolls to the table with a filter on the selected city. 
+* When a datapoint on the scattergraph is clicked, the room is selected in the table. 
+* All the data is set automatically (and thus easily table - even the totals)
+* In the table, one can filter, sort and rearrange. 
+* In the table, one can click through to the room offering. 
 
 ## Data
 
 The data that has been used was scraped on the folling websites: http://www.rooming.nl; http://kamersinnederland.nl and http://kamernet.nl. The following data was scraped for each room: 
 
-[x] City
-[x] Scraped website
-[x] Link to the room
-[x] Surface (m2)
-[x] Price (€)
-[x] Streetname
+* City
+* Scraped website
+* Link to the room
+* Surface (m2)
+* Price (€)
+* Streetname
 
 ## Guidelines for further development
 
