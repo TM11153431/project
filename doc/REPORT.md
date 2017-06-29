@@ -31,18 +31,18 @@ The used technology is split in three sections:
 1. Scraper
 	* Python 3.5.2
 	* Selenium 
-..* BeautifulSoup4
-..* Phantomjs 2.1
+	* BeautifulSoup4
+	* Phantomjs 2.1
 	
 2. HTML/CSS
-..* Bootstrap
-..* W3
+	* Bootstrap
+	* W3
 	
 3. Javascript
-..* D3 V3
-..* D3 Topojson
-..* jquery
-..* Bootstrap dataTables
+	* D3 V3
+	* D3 Topojson
+	* jquery
+	* Bootstrap dataTables
 	
 	
 ## Features
