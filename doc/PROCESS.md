@@ -28,7 +28,7 @@ Today, I have managed to get the scrapers working well and have given a presenta
 
 ## Day 6: June 13th
 
-Because of illness, I haven\'92t been able to work on my project yesterday. However, today I have made a lot of progress. I have got all a.\'92s in the framework of my project. This means, I have got a map, a table with the data and a scattergraph. Furthermore, I have all the data prepared. The problem now is that the data needs cleaning on three points (street names, cities (have to start with a capital letter) and I have a lot of outliers. \
+Because of illness, I haven't been able to work on my project yesterday. However, today I have made a lot of progress. I have got all a.\'92s in the framework of my project. This means, I have got a map, a table with the data and a scattergraph. Furthermore, I have all the data prepared. The problem now is that the data needs cleaning on three points (street names, cities (have to start with a capital letter) and I have a lot of outliers. \
 Tomorrow, I will clean the data and run through the different elements of my project. I will start with getting a nice frame for my project through Bootstrap and then go through the elements starting by the map (setting icons at the cities and making it clickable). I hope to be done with that today so I can continue tomorrow with linking all my visualisations.\
 
 ## Day 7: June 14th
